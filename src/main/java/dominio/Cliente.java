@@ -1,18 +1,19 @@
 package dominio;
 
 import java.time.LocalDate;
+import java.sql.Date;
 
 public class Cliente {
     private Integer idCliente;
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private LocalDate fechaNacimiento;
+    private Date fechaNacimiento;
     private String callle;
     private String colonia;
     private int codigoPostal;
 
-    public Cliente(Integer idCliente, String nombres, String apellidoPaterno, String apellidoMaterno, LocalDate fechaNacimiento, String callle, String colonia, int codigoPostal) {
+    public Cliente(Integer idCliente, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal) {
         this.idCliente = idCliente;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
@@ -23,7 +24,7 @@ public class Cliente {
         this.codigoPostal = codigoPostal;
     }
 
-    public Cliente(String nombres, String apellidoPaterno, String apellidoMaterno, LocalDate fechaNacimiento, String callle, String colonia, int codigoPostal) {
+    public Cliente(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -77,11 +78,11 @@ public class Cliente {
         this.callle = callle;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
