@@ -2,19 +2,29 @@ package paneles;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
     private Image imagen;
     public Login(){
         imagen = new ImageIcon("src\\main\\java\\img\\fondo.png").getImage();
+
     }
+
+    public void mostrarPanel(JPanel p){
+        p.setOpaque(false);
+        setContentPane(p);
+        revalidate();
+        repaint();
+    }
+
     public void mostrar() {
         setTitle("Login");
         setLayout(new BorderLayout());
         setSize(1080, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
 
         JPanel panelLogin = new JPanel(){
 
@@ -46,6 +56,11 @@ public class Login extends JFrame {
         panelCentro.setOpaque(false);
         panelCentro.setLayout(new GridBagLayout());
 
+        JPanel contenedorCentral = new JPanel(new BorderLayout());
+        contenedorCentral.setOpaque(false);
+        contenedorCentral.add(panelCentro, BorderLayout.CENTER);
+        panelLogin.add(contenedorCentral, BorderLayout.CENTER);
+
         JLabel labelLogin = new JLabel("Inicio de sesion");
         labelLogin.setFont(new Font("Arial", Font.BOLD, 30));
 
@@ -57,8 +72,12 @@ public class Login extends JFrame {
         labelContra.setFont(new Font("Arial", Font.BOLD, 18));
         JTextField textFieldContra = new JTextField(20);
 
-        JButton buttonIniciarSecion = new JButton("Iniciar sesion");
+        JButton buttonIniciarSesion = new JButton("Iniciar sesion");
         JButton buttonPedidoExpres = new JButton("Realizar pedido expres");
+
+        JLabel labelRegistrto = new JLabel("¿No tienes cuenta, registrate?");
+        labelRegistrto.setFont(new Font("Arial", Font.BOLD, 15));
+        JButton buttonRegistrarse = new JButton("Registrate");
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(6,6,6,6); // espacio
@@ -83,13 +102,47 @@ public class Login extends JFrame {
         panelCentro.add(buttonPedidoExpres, gbc);
 
         gbc.gridx = 1;
-        panelCentro.add(buttonIniciarSecion, gbc);
+        panelCentro.add(buttonIniciarSesion, gbc);
+
+        //fila 4
+        gbc.gridx = 0; gbc.gridy = 3;
+        panelCentro.add(labelRegistrto, gbc);
+
+        gbc.gridx = 1;
+        panelCentro.add(buttonRegistrarse, gbc);
 
         panelNorte.add(labelLogin);
         panelLogin.add(panelNorte,BorderLayout.NORTH);
 
         panelLogin.add(panelCentro,BorderLayout.CENTER);
         setContentPane(panelLogin);
+
+        buttonRegistrarse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Register r = new Register();
+                r.mostrar(); 
+                mostrarPanel(r);
+
+            }
+        });
+
+        buttonIniciarSesion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(textFieldUsuario.getText().equals("luis") && Integer.parseInt(textFieldContra.getText()) == 123){
+                    JOptionPane.showMessageDialog(null, "Acceso consedido");
+                    Register r = new Register();
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Contra incorrecta");
+                }
+
+            }
+        });
+
+
         setVisible(true);
     }
 }

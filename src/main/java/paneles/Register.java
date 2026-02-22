@@ -3,18 +3,16 @@ package paneles;
 import javax.swing.*;
 import java.awt.*;
 
-public class Register extends JDialog {
+public class Register extends JPanel {
 
     public Register(){
 
     }
 
     public void mostrar(){
-        setTitle("Login");
         setLayout(new BorderLayout());
         setSize(1080,720);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
+
 
         JLabel titulo = new JLabel("Registro de clientes");
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
@@ -104,10 +102,7 @@ public class Register extends JDialog {
         gbc.gridx = 1;
         panelCentro.add(telefonoTextfield, gbc);
 
-
-
         panelCentro.add(buttonAgregar);
-
 
         panelNorte.add(titulo);
 
