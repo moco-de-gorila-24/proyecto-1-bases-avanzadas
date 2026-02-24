@@ -1,5 +1,6 @@
 package DTO;
 
+import dominio.Cliente;
 import java.util.Date;
 
 public class ClienteDTO {
@@ -14,34 +15,89 @@ public class ClienteDTO {
     private int codigoPostal;
     private String contraseña;
 
-    public ClienteDTO() {
+    public ClienteDTO(Cliente cliente){
+        this.idCliente = cliente.getIdCliente();
+        this.nombres = cliente.getNombres();
+        this.apellidoPaterno = cliente.getApellidoPaterno();
+        this.apellidoMaterno = cliente.getApellidoMaterno();
+        this.fechaNacimiento = cliente.getFechaNacimiento();
+        this.callle = cliente.getCallle();
+        this.colonia = cliente.getColonia();
+        this.codigoPostal = cliente.getCodigoPostal();
+        this.contraseña = cliente.getContraseña();
     }
 
-    public ClienteDTO(Integer idCliente, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal, String contraseña) {
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
-        this.nombres = nombres;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.fechaNacimiento = fechaNacimiento;
-        this.callle = callle;
-        this.colonia = colonia;
-        this.codigoPostal = codigoPostal;
-        this.contraseña = contraseña;
     }
 
-    public ClienteDTO(String contraseña, int codigoPostal, String colonia, String callle, Date fechaNacimiento, String apellidoMaterno, String apellidoPaterno, String nombres) {
-        this.contraseña = contraseña;
-        this.codigoPostal = codigoPostal;
-        this.colonia = colonia;
-        this.callle = callle;
-        this.fechaNacimiento = fechaNacimiento;
-        this.apellidoMaterno = apellidoMaterno;
-        this.apellidoPaterno = apellidoPaterno;
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
         this.nombres = nombres;
     }
 
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
 
-    
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getCallle() {
+        return callle;
+    }
+
+    public void setCallle(String callle) {
+        this.callle = callle;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public int getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(int codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
 }
 
 
