@@ -12,6 +12,9 @@ public class Cliente {
     private String callle;
     private String colonia;
     private int codigoPostal;
+    private String contraseña;
+
+
 
     public Cliente(Integer idCliente, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal) {
         this.idCliente = idCliente;
@@ -24,7 +27,7 @@ public class Cliente {
         this.codigoPostal = codigoPostal;
     }
 
-    public Cliente(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal) {
+    public Cliente(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal, String contraseña) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -32,6 +35,7 @@ public class Cliente {
         this.callle = callle;
         this.colonia = colonia;
         this.codigoPostal = codigoPostal;
+        this.contraseña = contraseña;
     }
 
     public Cliente(){
@@ -100,5 +104,13 @@ public class Cliente {
 
     public void setApellidoPaterno(String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 }
