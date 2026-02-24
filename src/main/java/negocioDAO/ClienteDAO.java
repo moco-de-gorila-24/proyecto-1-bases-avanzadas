@@ -17,21 +17,18 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente agregarCliente(Cliente cliente) throws PersistenciaException {
         String comandoSQL = """
-                            INSERT INTO clientes (idCliente, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, calle, colonia, codigoPostal)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?);             
+                            INSERT INTO clientes (nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, calle, colonia, codigoPostal)
+                            VALUES ( ?, ?, ?, ?, ?, ?, ?);             
                             """;
 
         try(Connection conn = this.conexionBD.crearConexion(); PreparedStatement ps = conn.prepareStatement(comandoSQL, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, cliente.getIdCliente());
-            ps.setString(2, cliente.getNombres());
-            ps.setString(3, cliente.getApellidoPaterno());
-            ps.setString(4, cliente.getApellidoMaterno());
-            ps.setDate(5, cliente.getFechaNacimiento());
-            ps.setString(6, cliente.getCallle());
-            ps.setString(7, cliente.getColonia());
-            ps.setInt(8, cliente.getCodigoPostal());
-
-            ps.executeUpdate();
+            ps.setString(1, cliente.getNombres());
+            ps.setString(2, cliente.getApellidoPaterno());
+            ps.setString(3, cliente.getApellidoMaterno());
+            ps.setDate(4, cliente.getFechaNacimiento());
+            ps.setString(5, cliente.getCallle());
+            ps.setString(6, cliente.getColonia());
+            ps.setInt(7, cliente.getCodigoPostal());
 
         }
         catch (SQLException e) {
