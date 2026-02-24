@@ -1,16 +1,13 @@
-package persistenciaDAO;
+package negocioDAO;
 
 import dominio.Cliente;
 import negocio.PersistenciaException;
-import persistenciaBD.ConexionBD;
 import persistenciaBD.IConexionBD;
+import persistenciaDAO.IClienteDAO;
 
-import javax.swing.*;
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.Date;
 
-public class ClienteDAO implements IClienteDAO{
+public class ClienteDAO implements IClienteDAO {
     private final IConexionBD conexionBD;
 
     public ClienteDAO(IConexionBD conexionBD) {
