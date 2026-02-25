@@ -35,8 +35,9 @@ public class ClienteBO implements IClienteBO {
             throw new NegocioException("Debe ingresar una fecha valida");
         }
 
+
         // estas mandando un LA DTO de cliente al metodo pero este solo recibe objetos cliente
-        ClienteDAO.agregarCliente(null);
-        return null;
+        ClienteDAO.agregarCliente(cliente);
+        return cliente;
     }
 }
