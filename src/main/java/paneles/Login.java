@@ -7,12 +7,13 @@ import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
     private Image imagen;
-    public Login(){
+
+    public Login() {
         imagen = new ImageIcon("src\\main\\java\\img\\fondo.png").getImage();
 
     }
 
-    public void mostrarPanel(JPanel p){
+    public void mostrarPanel(JPanel p) {
         p.setOpaque(false);
         setContentPane(p);
         revalidate();
@@ -26,7 +27,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panelLogin = new JPanel(){
+        JPanel panelLogin = new JPanel() {
 
             @Override
             protected void paintComponent(Graphics g) {
@@ -44,9 +45,9 @@ public class Login extends JFrame {
             }
         };
 
-        panelLogin.setLayout(new BorderLayout(20,20));
+        panelLogin.setLayout(new BorderLayout(20, 20));
         panelLogin.setBorder(
-                BorderFactory.createEmptyBorder(0,50,300,50)
+                BorderFactory.createEmptyBorder(0, 50, 300, 50)
         );
 
         JPanel panelNorte = new JPanel();
@@ -80,48 +81,52 @@ public class Login extends JFrame {
         JButton buttonRegistrarse = new JButton("Registrate");
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(6,6,6,6); // espacio
+        gbc.insets = new Insets(6, 6, 6, 6); // espacio
         gbc.anchor = GridBagConstraints.WEST;
 
         //fila 1
-        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         panelCentro.add(labelUsuario, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldUsuario, gbc);
 
         //fila 2
-        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         panelCentro.add(labelContra, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldContra, gbc);
 
         //fila 3
-        gbc.gridx = 0; gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         panelCentro.add(buttonPedidoExpres, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(buttonIniciarSesion, gbc);
 
         //fila 4
-        gbc.gridx = 0; gbc.gridy = 3;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         panelCentro.add(labelRegistrto, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(buttonRegistrarse, gbc);
 
         panelNorte.add(labelLogin);
-        panelLogin.add(panelNorte,BorderLayout.NORTH);
+        panelLogin.add(panelNorte, BorderLayout.NORTH);
 
-        panelLogin.add(panelCentro,BorderLayout.CENTER);
+        panelLogin.add(panelCentro, BorderLayout.CENTER);
         setContentPane(panelLogin);
 
         buttonRegistrarse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Register r = new Register();
-                r.mostrar(); 
+                r.mostrar();
                 mostrarPanel(r);
 
             }
@@ -130,18 +135,15 @@ public class Login extends JFrame {
         buttonIniciarSesion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(textFieldUsuario.getText().equals("luis") && Integer.parseInt(textFieldContra.getText()) == 123){
+                if (textFieldUsuario.getText().equals("luis") && Integer.parseInt(textFieldContra.getText()) == 123) {
                     JOptionPane.showMessageDialog(null, "Acceso consedido");
                     Register r = new Register();
 
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Contra incorrecta");
                 }
-
             }
         });
-
 
         setVisible(true);
     }

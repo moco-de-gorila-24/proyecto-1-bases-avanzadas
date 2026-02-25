@@ -10,7 +10,6 @@ import paneles.Login;
 import paneles.Register;
 import persistenciaBD.ConexionBD;
 import persistenciaBD.IConexionBD;
-import persistenciaDAO.ClienteDAO;
 import persistenciaDAO.IClienteDAO;
 
 import java.sql.Connection;

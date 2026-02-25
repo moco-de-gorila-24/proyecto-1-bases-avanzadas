@@ -1,10 +1,12 @@
 package negocioDAO;
+
 import dominio.Pedidos;
 import negocio.PersistenciaException;
 import persistenciaBD.IConexionBD;
 import persistenciaDAO.IPedidoDAO;
 import java.util.List;
 import java.util.ArrayList;
+
 /**
  *
  * @author oscar
@@ -22,7 +24,7 @@ public class PedidoDAO implements IPedidoDAO {
 
     @Override
     public List<Pedidos> buscarPedidos(String filtro) throws PersistenciaException {
-        return new ArrayList<>(); 
+        return new ArrayList<>();
     }
 
     @Override

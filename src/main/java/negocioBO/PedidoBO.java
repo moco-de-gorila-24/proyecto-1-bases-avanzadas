@@ -1,8 +1,10 @@
 package negocioBO;
+
 import dominio.Pedidos;
 import negocio.PersistenciaException;
 import persistenciaDAO.IPedidoDAO;
 import java.util.List;
+
 /**
  *
  * @author oscar
@@ -18,11 +20,11 @@ public class PedidoBO {
         if (!pedido.getEstadoPedido().equals("Listo")) {
             throw new Exception("El pedido debe estar en estado 'Listo' para entregarse.");
         }
-        
+
         pedidoDAO.actualizarEstado(pedido.getIdPedido(), "Entregado");
-        
+
     }
-    
+
     public List<Pedidos> obtenerPedidosPorFiltro(String filtro) throws PersistenciaException {
         return pedidoDAO.buscarPedidos(filtro);
     }

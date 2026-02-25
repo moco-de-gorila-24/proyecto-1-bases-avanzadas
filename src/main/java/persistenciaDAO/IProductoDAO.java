@@ -9,8 +9,5 @@ public interface IProductoDAO {
     Producto actualizarProducto(Producto producto) throws PersistenciaException;
 
 
-
-
-
 }
 

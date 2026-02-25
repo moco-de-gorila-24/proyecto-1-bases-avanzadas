@@ -1,7 +1,9 @@
 package persistenciaDAO;
+
 import dominio.Pedidos;
 import negocio.PersistenciaException;
 import java.util.List;
+
 /**
  *
  * @author oscar
@@ -10,6 +12,6 @@ public interface IPedidoDAO {
     void agregarPedido(Pedidos pedido) throws PersistenciaException;
 
     List<Pedidos> buscarPedidos(String filtro) throws PersistenciaException;
-    
+
     void actualizarEstado(int idPedido, String nuevoEstado) throws PersistenciaException;
 }

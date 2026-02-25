@@ -1,5 +1,7 @@
 package dominio;
+
 import java.time.LocalDateTime;
+
 /**
  *
  * @author oscar
@@ -8,7 +10,7 @@ public class Pago {
     private int idPago;
     private int idPedido;
     private float monto;
-    private String metodoPago; 
+    private String metodoPago;
     private LocalDateTime fechaPago;
 
     public Pago(int idPedido, float monto, String metodoPago) {
@@ -57,5 +59,5 @@ public class Pago {
     public void setFechaPago(LocalDateTime fechaPago) {
         this.fechaPago = fechaPago;
     }
-    
 }
+
