@@ -1,1 +1,61 @@
+package dominio;
+import java.time.LocalDateTime;
+/**
+ *
+ * @author oscar
+ */
+public class Pago {
+    private int idPago;
+    private int idPedido;
+    private float monto;
+    private String metodoPago; 
+    private LocalDateTime fechaPago;
 
+    public Pago(int idPedido, float monto, String metodoPago) {
+        this.idPedido = idPedido;
+        this.monto = monto;
+        this.metodoPago = metodoPago;
+        this.fechaPago = LocalDateTime.now();
+    }
+
+    public int getIdPago() {
+        return idPago;
+    }
+
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
+    }
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public float getMonto() {
+        return monto;
+    }
+
+    public void setMonto(float monto) {
+        this.monto = monto;
+    }
+
+    public String getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public LocalDateTime getFechaPago() {
+        return fechaPago;
+    }
+
+    public void setFechaPago(LocalDateTime fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+    
+}
