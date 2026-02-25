@@ -34,7 +34,6 @@ public class Proyecto_1_bases_de_datos_avanzadas {
 //            IConexionBD conexion = new ConexionBD();
 //            IClienteDAO clienteDAO = new ClienteDAO(conexion);
 //
-           Cliente cliente = new Cliente(3, "Charly","Duarte", "Mendez" , Date.valueOf("2005-03-21"),"kino", "obregonyork",85175);
 //
 //            clienteDAO.agregarCliente(cliente);
 //        }

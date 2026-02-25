@@ -1,31 +1,19 @@
 package dominio;
 
-public class PedidoExpress {
-    private int idPedido;
+import java.time.LocalDateTime;
+
+public class PedidoExpress extends Pedidos {
     private String folio;
-    private String pin;
+    private String pinSeguridad;
+    private LocalDateTime fechaHoraLimite;
 
-    public PedidoExpress(int idPedido, String folio, String pin) {
-        this.idPedido = idPedido;
-        this.folio = folio;
-        this.pin = pin;
+    public PedidoExpress() {
+        super();
+        this.fechaHoraLimite = LocalDateTime.now().plusMinutes(20);
     }
 
-    public PedidoExpress(String folio, String pin) {
-        this.folio = folio;
-        this.pin = pin;
-    }
-
-    public PedidoExpress(){
-
-    }
-
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public boolean haExpirado() {
+        return LocalDateTime.now().isAfter(fechaHoraLimite);
     }
 
     public String getFolio() {
@@ -36,11 +24,19 @@ public class PedidoExpress {
         this.folio = folio;
     }
 
-    public String getPin() {
-        return pin;
+    public String getPinSeguridad() {
+        return pinSeguridad;
     }
 
-    public void setPin(String pin) {
-        this.pin = pin;
+    public void setPinSeguridad(String pinSeguridad) {
+        this.pinSeguridad = pinSeguridad;
+    }
+
+    public LocalDateTime getFechaHoraLimite() {
+        return fechaHoraLimite;
+    }
+
+    public void setFechaHoraLimite(LocalDateTime fechaHoraLimite) {
+        this.fechaHoraLimite = fechaHoraLimite;
     }
 }

@@ -21,10 +21,9 @@ public class ClienteDTO {
         this.apellidoPaterno = cliente.getApellidoPaterno();
         this.apellidoMaterno = cliente.getApellidoMaterno();
         this.fechaNacimiento = cliente.getFechaNacimiento();
-        this.callle = cliente.getCallle();
+        this.callle = cliente.getCalle();
         this.colonia = cliente.getColonia();
         this.codigoPostal = cliente.getCodigoPostal();
-        this.contraseña = cliente.getContraseña();
     }
 
     public Integer getIdCliente() {

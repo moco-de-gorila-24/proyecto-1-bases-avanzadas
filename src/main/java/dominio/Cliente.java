@@ -1,7 +1,10 @@
 package dominio;
 
-import java.time.LocalDate;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
     private Integer idCliente;
@@ -9,37 +12,73 @@ public class Cliente {
     private String apellidoPaterno;
     private String apellidoMaterno;
     private Date fechaNacimiento;
-    private String callle;
+    private String calle;
     private String colonia;
     private int codigoPostal;
-    private String contraseña;
+    private String password;
+    private List<Telefono> telefonos;
 
+    public static class Telefono {
+        private String numero;
+        private String etiqueta;
 
+        public Telefono(String numero, String etiqueta) {
+            this.numero = numero;
+            this.etiqueta = etiqueta;
+        }
 
-    public Cliente(Integer idCliente, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal) {
+        public String getNumero() {
+            return numero;
+        }
+
+        public void setNumero(String numero) {
+            this.numero = numero;
+        }
+
+        public String getEtiqueta() {
+            return etiqueta;
+        }
+
+        public void setEtiqueta(String etiqueta) {
+            this.etiqueta = etiqueta;
+        }
+    }
+
+    public Cliente() {
+        this.telefonos = new ArrayList<>();
+    }
+
+    public Cliente(Integer idCliente, String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String calle, String colonia, int codigoPostal, String password) {
         this.idCliente = idCliente;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.fechaNacimiento = fechaNacimiento;
-        this.callle = callle;
+        this.calle = calle;
         this.colonia = colonia;
         this.codigoPostal = codigoPostal;
+        this.password = password;
+        this.telefonos = new ArrayList<>();
     }
 
-    public Cliente(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String callle, String colonia, int codigoPostal, String contraseña) {
+    public Cliente(String nombres, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String calle, String colonia, int codigoPostal, String password) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.fechaNacimiento = fechaNacimiento;
-        this.callle = callle;
+        this.calle = calle;
         this.colonia = colonia;
         this.codigoPostal = codigoPostal;
-        this.contraseña = contraseña;
+        this.password = password;
+        this.telefonos = new ArrayList<>();
     }
 
-    public Cliente(){
-
+    public int getEdad() {
+        if (fechaNacimiento != null) {
+            LocalDate nacimiento = fechaNacimiento.toLocalDate();
+            return Period.between(nacimiento, LocalDate.now()).getYears();
+        }
+        return 0;
     }
 
     public Integer getIdCliente() {
@@ -58,36 +97,12 @@ public class Cliente {
         this.nombres = nombres;
     }
 
-    public int getCodigoPostal() {
-        return codigoPostal;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setCodigoPostal(int codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
-
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
-    }
-
-    public String getCallle() {
-        return callle;
-    }
-
-    public void setCallle(String callle) {
-        this.callle = callle;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
     }
 
     public String getApellidoMaterno() {
@@ -98,19 +113,51 @@ public class Cliente {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getCalle() {
+        return calle;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public int getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(int codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public void agregarTelefono(String numero, String etiqueta) {
+        this.telefonos.add(new Telefono(numero, etiqueta));
+    }
+
+    public List<Telefono> getTelefonos() {
+        return telefonos;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

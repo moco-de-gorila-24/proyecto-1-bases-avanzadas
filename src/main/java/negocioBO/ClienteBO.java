@@ -37,7 +37,7 @@ public class ClienteBO implements IClienteBO {
 
 
         // estas mandando un LA DTO de cliente al metodo pero este solo recibe objetos cliente
-        ClienteDAO.agregarCliente(cliente);
-        return cliente;
+        ClienteDAO.registrarCliente(null);
+        return null;
     }
 }
