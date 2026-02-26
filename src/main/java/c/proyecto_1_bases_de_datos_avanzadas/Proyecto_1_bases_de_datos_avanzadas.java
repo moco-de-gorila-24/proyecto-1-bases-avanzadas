@@ -10,14 +10,9 @@ import paneles.Login;
 import paneles.Register;
 import persistenciaBD.ConexionBD;
 import persistenciaBD.IConexionBD;
-import persistenciaDAO.ClienteDAO;
-import persistenciaDAO.IClienteDAO;
-
-import java.sql.Connection;
+import persistenciaDAO.IClienteDAO; 
+import negocioDAO.ClienteDAO;      
 import java.sql.Date;
-import java.sql.SQLException;
-import java.time.LocalDate;
-
 /**
  *
  * @author Luis
@@ -25,23 +20,8 @@ import java.time.LocalDate;
 public class Proyecto_1_bases_de_datos_avanzadas {
 
     public static void main(String[] args) {
-        Register login = new Register();
-        //login.mostrar();
-
         Login logi = new Login();
-        logi.mostrar();
-
-//        try{
-//            IConexionBD conexion = new ConexionBD();
-//            IClienteDAO clienteDAO = new ClienteDAO(conexion);
-//
-           Cliente cliente = new Cliente(3, "Charly","Duarte", "Mendez" , Date.valueOf("2005-03-21"),"kino", "obregonyork",85175);
-//
-//            clienteDAO.agregarCliente(cliente);
-//        }
-//        catch (PersistenciaException e) {
-//            throw new RuntimeException(e);
-//        }
+        logi.setVisible(true); 
 
     }
 }

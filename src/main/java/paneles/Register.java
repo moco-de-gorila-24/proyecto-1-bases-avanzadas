@@ -21,11 +21,11 @@ public class Register extends JPanel {
     private Image imagen;
 
 
-    public Register(){
+    public Register() {
         imagen = new ImageIcon("src\\main\\java\\img\\FondoRegistrar.png").getImage();
     }
 
-    public void mostrarPanel(JFrame p){
+    public void mostrarPanel(JFrame p) {
         p.setOpacity(0);
         p.setContentPane(p);
         revalidate();
@@ -33,9 +33,9 @@ public class Register extends JPanel {
 
     }
 
-    public void mostrar(){
+    public void mostrar() {
         setLayout(new BorderLayout());
-        setSize(1080,720);
+        setSize(1080, 720);
 
 
         JLabel titulo = new JLabel("Registro de clientes");
@@ -55,17 +55,17 @@ public class Register extends JPanel {
 
         JLabel labelFecha = new JLabel("Ingrese su fecha de nacimiento ");
         labelFecha.setFont(new Font("Arial", Font.BOLD, 17));
-        JTextField textFieldFecha = new JTextField("yyyy-mm-dd",20);
+        JTextField textFieldFecha = new JTextField("yyyy-mm-dd", 20);
 
         JLabel labelCalle = new JLabel("Ingrese su calle");
         labelCalle.setFont(new Font("Arial", Font.BOLD, 17));
         JTextField textFieldCalle = new JTextField(20);
 
         JButton buttonAgregar = new JButton("Agregar cliente");
-        JButton buttonIniciarSesion = new JButton("Iniciar sesion"); // por si el cliente recuerda que tiene cuenta
+        JButton buttonIniciarSesion = new JButton("Iniciar sesion");
 
         JLabel labelColonia = new JLabel("Ingrese el nombre de su colonia");
-        labelColonia.setFont(new Font("Arial", Font.BOLD,17));
+        labelColonia.setFont(new Font("Arial", Font.BOLD, 17));
         JTextField textFieldColonia = new JTextField(20);
 
         JLabel labelTelefono = new JLabel("Ingrese su telefono de contacto");
@@ -84,19 +84,17 @@ public class Register extends JPanel {
         labelConfirmarContra.setFont(new Font("Arial", Font.BOLD, 17));
         JPasswordField passwordFieldConfirmarContra = new JPasswordField(20);
 
-        JPanel panelPrincipal = new JPanel(){
+        JPanel panelPrincipal = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
                 Graphics2D g2 = (Graphics2D) g;
 
-                // Habilitar alta calidad
                 g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Dibujar imagen con interpolación suave
                 g2.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
             }
         };
@@ -109,9 +107,9 @@ public class Register extends JPanel {
         JPanel panelSur = new JPanel();
         panelSur.setOpaque(false);
 
-        panelPrincipal.setLayout(new BorderLayout(10,10));
+        panelPrincipal.setLayout(new BorderLayout(10, 10));
         panelPrincipal.setBorder(
-                BorderFactory.createEmptyBorder(20,40,20,40)
+                BorderFactory.createEmptyBorder(20, 40, 20, 40)
         );
 
         panelCentro.setLayout(new GridBagLayout());
@@ -119,77 +117,87 @@ public class Register extends JPanel {
 
         panelSur.setLayout(new GridBagLayout());
         GridBagConstraints gbc2 = new GridBagConstraints();
-        gbc2.insets = new Insets(-5,25,50,25); // espacio
+        gbc2.insets = new Insets(-5, 25, 50, 25); // espacio
         gbc2.anchor = GridBagConstraints.WEST;
 
-        gbc.insets = new Insets(5,5,5,5); // espacio
+        gbc.insets = new Insets(5, 5, 5, 5); // espacio
         gbc.anchor = GridBagConstraints.WEST;
 
         // Fila 1
-        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         panelCentro.add(labelNombre, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldNombre, gbc);
 
         // Fila 2
-        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         panelCentro.add(labelApellidoPaterno, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldApellidoPaterno, gbc);
 
         //fila 3
-        gbc.gridx = 0; gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         panelCentro.add(labelApellidoMaterno, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldApellidoMaterno, gbc);
 
         //Fila 3
-        gbc.gridx = 0; gbc.gridy = 3;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         panelCentro.add(labelFecha, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldFecha, gbc);
 
         //Fila 4
-        gbc.gridx = 0; gbc.gridy = 4;
+        gbc.gridx = 0;
+        gbc.gridy = 4;
         panelCentro.add(labelCalle, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldCalle, gbc);
 
         //Fila 5
-        gbc.gridx = 0; gbc.gridy = 5;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
         panelCentro.add(labelColonia, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldColonia, gbc);
 
         //Fila 6
-        gbc.gridx = 0; gbc.gridy = 6;
+        gbc.gridx = 0;
+        gbc.gridy = 6;
         panelCentro.add(labelTelefono, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(telefonoTextfield, gbc);
 
         //fila 7
-        gbc.gridx = 0; gbc.gridy = 7;
+        gbc.gridx = 0;
+        gbc.gridy = 7;
         panelCentro.add(labelCodigoPostal, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldCodigoPostal, gbc);
 
         //Fila 8
-        gbc.gridx = 0; gbc.gridy = 8;
+        gbc.gridx = 0;
+        gbc.gridy = 8;
         panelCentro.add(labelContra, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(passwordFieldContra, gbc);
 
         //fila 9
-        gbc.gridx = 0; gbc.gridy = 9;
+        gbc.gridx = 0;
+        gbc.gridy = 9;
         panelCentro.add(labelConfirmarContra, gbc);
 
         gbc.gridx = 1;
@@ -197,16 +205,14 @@ public class Register extends JPanel {
 
         //fila 1 del panel sur
 
-        gbc2.gridx = 0; gbc2.gridy = 12;
+        gbc2.gridx = 0;
+        gbc2.gridy = 12;
         panelSur.add(buttonIniciarSesion, gbc2);
 
         gbc2.gridx = 1;
         panelSur.add(buttonAgregar, gbc2);
 
-
-
-
-       // panelCentro.add(buttonAgregar);
+        // panelCentro.add(buttonAgregar);
         panelNorte.add(titulo);
         panelPrincipal.add(panelNorte, BorderLayout.NORTH);
         panelPrincipal.add(panelCentro, BorderLayout.CENTER);
@@ -243,19 +249,11 @@ public class Register extends JPanel {
                     c.agregarCliente(clienteDTO);
 
 
-                }
-                 catch (NegocioException | PersistenciaException ex) {
+                } catch (NegocioException | PersistenciaException ex) {
                     throw new RuntimeException(ex);
                 }
-
-
-
-
-
             }
         });
-
-
 
         setVisible(true);
     }
