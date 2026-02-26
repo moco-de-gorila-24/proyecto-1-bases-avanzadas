@@ -1,26 +1,39 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package servicios;
 
 import dominio.Pedidos;
-import java.time.LocalDateTime;
-
+import negocio.PersistenciaException;
+import persistenciaDAO.IPedidoDAO;
+/**
+ *
+ * @author oscar
+ */
 public class GestionEntregas {
 
-    public void entregarPedido(Pedidos pedido, String metodoPago) throws Exception {
+    private final IPedidoDAO pedidoDAO;
 
-        if (!pedido.getEstadoPedido().equalsIgnoreCase("Listo")) {
-            throw new Exception("Error: Solo se pueden entregar pedidos en estado 'Listo'. " +
-                    "Estado actual: " + pedido.getEstadoPedido());
-        }
-
-        pedido.setEstadoPedido("Entregado");
-        pedido.setFechaHoraEntrega(LocalDateTime.now());
-
-        registrarPago(pedido, metodoPago);
-
-        System.out.println("Pedido #" + pedido.getIdPedido() + " entregado exitosamente.");
+    public GestionEntregas(IPedidoDAO pedidoDAO) {
+        this.pedidoDAO = pedidoDAO;
     }
 
-    private void registrarPago(Pedidos pedido, String metodo) {
-        System.out.println("Pago registrado: $" + pedido.getTotal() + " vía " + metodo);
+    public void entregarPedido(Pedidos pedido, String metodoPago) throws Exception {
+        if (pedido == null) {
+            throw new Exception("Error: El pedido es nulo.");
+        }
+
+        if (pedido.getEstadoPedido() == null || !pedido.getEstadoPedido().equalsIgnoreCase("Listo")) {
+            throw new Exception("Error: El pedido #" + pedido.getIdPedido() + " no está listo para entrega.");
+        }
+
+        pedidoDAO.registrarEntregaYPago(
+            pedido.getIdPedido(),      
+            metodoPago,                
+            (double) pedido.getTotal() 
+        );
+
+        pedido.setEstadoPedido("Entregado");
     }
 }

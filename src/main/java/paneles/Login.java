@@ -4,16 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import negocioDAO.ClienteDAO;
+import persistenciaBD.ConexionBD;
+import persistenciaBD.IConexionBD;
+import persistenciaDAO.IClienteDAO;
 
 public class Login extends JFrame {
     private Image imagen;
-
-    public Login() {
+    public Login(){
         imagen = new ImageIcon("src\\main\\java\\img\\fondo.png").getImage();
 
     }
 
-    public void mostrarPanel(JPanel p) {
+    public void mostrarPanel(JPanel p){
         p.setOpaque(false);
         setContentPane(p);
         revalidate();
@@ -27,7 +30,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panelLogin = new JPanel() {
+        JPanel panelLogin = new JPanel(){
 
             @Override
             protected void paintComponent(Graphics g) {
@@ -35,19 +38,17 @@ public class Login extends JFrame {
 
                 Graphics2D g2 = (Graphics2D) g;
 
-                // Habilitar alta calidad
                 g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Dibujar imagen con interpolación suave
                 g2.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
             }
         };
 
-        panelLogin.setLayout(new BorderLayout(20, 20));
+        panelLogin.setLayout(new BorderLayout(20,20));
         panelLogin.setBorder(
-                BorderFactory.createEmptyBorder(0, 50, 300, 50)
+                BorderFactory.createEmptyBorder(0,50,300,50)
         );
 
         JPanel panelNorte = new JPanel();
@@ -81,70 +82,81 @@ public class Login extends JFrame {
         JButton buttonRegistrarse = new JButton("Registrate");
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(6, 6, 6, 6); // espacio
+        gbc.insets = new Insets(6,6,6,6); // espacio
         gbc.anchor = GridBagConstraints.WEST;
 
         //fila 1
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridx = 0; gbc.gridy = 0;
         panelCentro.add(labelUsuario, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldUsuario, gbc);
 
         //fila 2
-        gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridx = 0; gbc.gridy = 1;
         panelCentro.add(labelContra, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(textFieldContra, gbc);
 
         //fila 3
-        gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridx = 0; gbc.gridy = 2;
         panelCentro.add(buttonPedidoExpres, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(buttonIniciarSesion, gbc);
 
         //fila 4
-        gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridx = 0; gbc.gridy = 3;
         panelCentro.add(labelRegistrto, gbc);
 
         gbc.gridx = 1;
         panelCentro.add(buttonRegistrarse, gbc);
 
         panelNorte.add(labelLogin);
-        panelLogin.add(panelNorte, BorderLayout.NORTH);
+        panelLogin.add(panelNorte,BorderLayout.NORTH);
 
-        panelLogin.add(panelCentro, BorderLayout.CENTER);
+        panelLogin.add(panelCentro,BorderLayout.CENTER);
         setContentPane(panelLogin);
 
         buttonRegistrarse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Register r = new Register();
-                r.mostrar();
+                r.mostrar(); 
                 mostrarPanel(r);
 
             }
         });
 
-        buttonIniciarSesion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (textFieldUsuario.getText().equals("luis") && Integer.parseInt(textFieldContra.getText()) == 123) {
-                    JOptionPane.showMessageDialog(null, "Acceso consedido");
-                    Register r = new Register();
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contra incorrecta");
-                }
+buttonIniciarSesion.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String usuario = textFieldUsuario.getText();
+        String password = textFieldContra.getText(); // O passwordFieldContra.getPassword() si lo cambiaste
+
+        // 1. Instanciar la conexión y el DAO
+        IConexionBD conexion = new ConexionBD();
+        IClienteDAO clienteDAO = new ClienteDAO(conexion);
+
+        try {
+            if (usuario.equals("Oscar") && password.equals("password_segura")) { 
+                
+                JOptionPane.showMessageDialog(null, "Acceso concedido. Bienvenido al Sistema de Pizzería.");
+                
+                PanelEntregas pantallaEntregas = new PanelEntregas(); 
+                pantallaEntregas.setVisible(true);
+                
+                dispose(); 
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
             }
-        });
-
-        setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + ex.getMessage());
+        }
     }
+});
+}
 }

@@ -1,56 +1,37 @@
 package dominio;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
+/**
+ * Entidad de dominio para los Pedidos de la Pizzería.
+ * @author oscar
+ */
 public class Pedidos {
     private int idPedido;
     private String estadoPedido;
-    private float total;
-    private Cliente cliente;
-    private List<DetallePedido> detalles;
+    private float total; 
+    private LocalDate fechaHoraPreparacion;
+    private LocalDate fechaHoraEntrega;
+    private Integer idCliente; 
 
-    private LocalDateTime fechaHoraRegistro;
-    private LocalDateTime fechaHoraPreparacion;
-    private LocalDateTime fechaHoraListo;
-    private LocalDateTime fechaHoraEntrega;
+    public Pedidos(int idPedido, String estadoPedido, float total, LocalDate fechaHoraPreparacion, LocalDate fechaHoraEntrega, Integer idCliente) {
+        this.idPedido = idPedido;
+        this.estadoPedido = estadoPedido;
+        this.total = total;
+        this.fechaHoraPreparacion = fechaHoraPreparacion;
+        this.fechaHoraEntrega = fechaHoraEntrega;
+        this.idCliente = idCliente;
+    }
 
-    public static class DetallePedido {
-        private Producto producto;
-        private String notaOpcional;
-
-        public DetallePedido(Producto producto, String notaOpcional) {
-            this.producto = producto;
-            this.notaOpcional = notaOpcional;
-        }
-
-        public Producto getProducto() {
-            return producto;
-        }
-
-        public String getNotaOpcional() {
-            return notaOpcional;
-        }
+    public Pedidos(String estadoPedido, float total, Integer idCliente) {
+        this.estadoPedido = estadoPedido;
+        this.total = total;
+        this.idCliente = idCliente;
     }
 
     public Pedidos() {
-        this.estadoPedido = "Pendiente";
-        this.fechaHoraRegistro = LocalDateTime.now();
-        this.detalles = new ArrayList<>();
     }
 
-    public void calcularTotal() {
-        float suma = 0;
-        for (DetallePedido detalle : detalles) {
-            suma += detalle.getProducto().getPrecio();
-        }
-        this.total = suma;
-    }
-
-    public void agregarProducto(Producto producto, String nota) {
-        this.detalles.add(new DetallePedido(producto, nota));
-    }
 
     public int getIdPedido() {
         return idPedido;
@@ -68,57 +49,35 @@ public class Pedidos {
         this.estadoPedido = estadoPedido;
     }
 
-    public float getTotal() {
+    public float getTotal() { 
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(float total) { 
         this.total = total;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public List<DetallePedido> getDetalles() {
-        return detalles;
-    }
-
-    public LocalDateTime getFechaHoraRegistro() {
-        return fechaHoraRegistro;
-    }
-
-    public void setFechaHoraRegistro(LocalDateTime fechaHoraRegistro) {
-        this.fechaHoraRegistro = fechaHoraRegistro;
-    }
-
-    public LocalDateTime getFechaHoraPreparacion() {
+    public LocalDate getFechaHoraPreparacion() {
         return fechaHoraPreparacion;
     }
 
-    public void setFechaHoraPreparacion(LocalDateTime fechaHoraPreparacion) {
+    public void setFechaHoraPreparacion(LocalDate fechaHoraPreparacion) {
         this.fechaHoraPreparacion = fechaHoraPreparacion;
     }
 
-    public LocalDateTime getFechaHoraListo() {
-        return fechaHoraListo;
-    }
-
-    public void setFechaHoraListo(LocalDateTime fechaHoraListo) {
-        this.fechaHoraListo = fechaHoraListo;
-    }
-
-    public LocalDateTime getFechaHoraEntrega() {
+    public LocalDate getFechaHoraEntrega() {
         return fechaHoraEntrega;
     }
 
-    public void setFechaHoraEntrega(LocalDateTime fechaHoraEntrega) {
+    public void setFechaHoraEntrega(LocalDate fechaHoraEntrega) {
         this.fechaHoraEntrega = fechaHoraEntrega;
     }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
 }
-
-

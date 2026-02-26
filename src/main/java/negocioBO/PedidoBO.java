@@ -1,12 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package negocioBO;
 
-import dominio.PedidoExpress;
+
 import dominio.Pedidos;
 import negocio.PersistenciaException;
 import persistenciaDAO.IPedidoDAO;
-import utilidades.Encriptador;
 import java.util.List;
-
+/**
+ *
+ * @author oscar
+ */
 public class PedidoBO {
 
     private final IPedidoDAO pedidoDAO;
@@ -15,30 +21,17 @@ public class PedidoBO {
         this.pedidoDAO = pedidoDAO;
     }
 
-    public boolean puedeRealizarPedido(int idCliente) throws PersistenciaException {
-        List<Pedidos> pedidosActivos = pedidoDAO.buscarPedidosPorClienteYEstados(idCliente,
-                List.of("Pendiente", "En Preparación", "Listo"));
-
-        return pedidosActivos.size() < 3;
+    public List<Pedidos> buscarPedidosListos() throws PersistenciaException {
+        return pedidoDAO.buscarPedidosListos();
     }
 
-    public void procesarEntrega(Pedidos pedido, String pinIngresado, String metodoPago) throws Exception {
-
-        if (!pedido.getEstadoPedido().equalsIgnoreCase("Listo")) {
-            throw new Exception("Operación inválida: El pedido debe estar en estado 'Listo' para ser entregado.");
+    public void actualizarEstado(int idPedido, String nuevoEstado) throws PersistenciaException {
+        if (idPedido <= 0) {
+            throw new PersistenciaException("ID de pedido no válido.");
         }
-
-        if (pedido instanceof PedidoExpress) {
-            PedidoExpress express = (PedidoExpress) pedido;
-            if (!Encriptador.verificar(pinIngresado, express.getPinSeguridad())) {
-                throw new Exception("Error de seguridad: El PIN ingresado es incorrecto.");
-            }
-        }
-
-        pedidoDAO.registrarEntregaConPago(pedido.getIdPedido(), metodoPago, pedido.getTotal());
+        pedidoDAO.actualizarEstado(idPedido, nuevoEstado);
     }
-
-    public List<Pedidos> consultarPedidosParaMostrador(String filtro) throws PersistenciaException {
-        return pedidoDAO.buscarPedidos(filtro);
+    public void registrarEntrega(int idPedido, String metodo, double monto) throws PersistenciaException {
+        pedidoDAO.registrarEntregaYPago(idPedido, metodo, monto);
     }
 }
