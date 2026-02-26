@@ -5,9 +5,11 @@
 package paneles;
 
 import dominio.Pedidos;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 import negocio.PersistenciaException;
 import negocioDAO.PedidoDAO;
 import persistenciaBD.ConexionBD;
@@ -26,12 +28,12 @@ public class PanelEntregas extends javax.swing.JFrame {
     public PanelEntregas() {
         this.pedidoDAO = new PedidoDAO(new ConexionBD());
         this.servicioEntregas = new GestionEntregas(pedidoDAO);
-        
-        initComponentsCustom(); 
-        
-        configurarTabla(); 
-        cargarPedidosListos(); 
-        
+
+        initComponentsCustom();
+
+        configurarTabla();
+        cargarPedidosListos();
+
         this.setLocationRelativeTo(null);
         this.setTitle("Pizzería - Gestión de Entregas");
     }
@@ -53,10 +55,10 @@ public class PanelEntregas extends javax.swing.JFrame {
 
             for (Pedidos p : lista) {
                 Object[] fila = {
-                    p.getIdPedido(),
-                    "ID: " + p.getIdCliente(),
-                    p.getTotal(),
-                    p.getEstadoPedido()
+                        p.getIdPedido(),
+                        "ID: " + p.getIdCliente(),
+                        p.getTotal(),
+                        p.getEstadoPedido()
                 };
                 modelo.addRow(fila);
             }
@@ -64,6 +66,7 @@ public class PanelEntregas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al cargar pedidos: " + e.getMessage());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +81,7 @@ public class PanelEntregas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18));
         jLabel1.setText("Gestión de Entregas - PIZZERIA");
 
         jScrollPane2.setViewportView(tablaPedidos);
@@ -86,36 +89,36 @@ public class PanelEntregas extends javax.swing.JFrame {
         ConfirmarEntregaYPago.setText("Confirmar Entrega y Pago");
         ConfirmarEntregaYPago.addActionListener(evt -> ConfirmarEntregaYPagoActionPerformed(evt));
 
-        // LA SOLUCIÓN DEFINITIVA AL ERROR DE GROUP LAYOUT:
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        
+
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ConfirmarEntregaYPago, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(ConfirmarEntregaYPago, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConfirmarEntregaYPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ConfirmarEntregaYPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -128,15 +131,15 @@ public class PanelEntregas extends javax.swing.JFrame {
         jLabel1.setText("Gestión de Entregas");
 
         tablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         jScrollPane2.setViewportView(tablaPedidos);
 
@@ -150,44 +153,44 @@ public class PanelEntregas extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(ConfirmarEntregaYPago)
-                .addGap(129, 129, 129))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(ConfirmarEntregaYPago)
+                                .addGap(129, 129, 129))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(160, 160, 160)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ConfirmarEntregaYPago)
-                        .addGap(140, 140, 140))))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(ConfirmarEntregaYPago)
+                                                .addGap(140, 140, 140))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmarEntregaYPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarEntregaYPagoActionPerformed
         int filaSeleccionada = tablaPedidos.getSelectedRow();
-        
+
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un pedido de la tabla.");
             return;
-    }//GEN-LAST:event_ConfirmarEntregaYPagoActionPerformed
-try {
+        }//GEN-LAST:event_ConfirmarEntregaYPagoActionPerformed
+        try {
             int idPedido = (int) tablaPedidos.getValueAt(filaSeleccionada, 0);
             float total = (float) tablaPedidos.getValueAt(filaSeleccionada, 2);
             String estado = (String) tablaPedidos.getValueAt(filaSeleccionada, 3);
@@ -201,11 +204,11 @@ try {
             int respuesta = JOptionPane.showOptionDialog(this, "¿Método de pago?", "Pago",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 
-            if (respuesta == -1) return; 
+            if (respuesta == -1) return;
             String metodo = opciones[respuesta];
 
             servicioEntregas.entregarPedido(pedido, metodo);
-            
+
             JOptionPane.showMessageDialog(this, "Entrega y pago registrados exitosamente.");
             cargarPedidosListos();
 
@@ -214,11 +217,9 @@ try {
         }
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConfirmarEntregaYPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaPedidos;
-    // End of variables declaration//GEN-END:variables
 }

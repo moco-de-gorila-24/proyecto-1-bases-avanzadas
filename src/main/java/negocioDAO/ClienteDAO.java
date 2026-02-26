@@ -5,6 +5,7 @@ import dominio.Cliente;
 import negocio.PersistenciaException;
 import persistenciaBD.IConexionBD;
 import persistenciaDAO.IClienteDAO;
+
 import java.sql.*;
 
 public class ClienteDAO implements IClienteDAO {
@@ -17,22 +18,22 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente agregarCliente(Cliente cliente) throws PersistenciaException {
         String comandoSQL = """
-                            INSERT INTO Clientes (nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, calle, colonia, codigoPostal, contrasenia)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?);             
-                            """;
+                INSERT INTO Clientes (nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, calle, colonia, codigoPostal, contrasenia)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?);             
+                """;
 
-        try (Connection conn = this.conexionBD.crearConexion(); 
+        try (Connection conn = this.conexionBD.crearConexion();
              PreparedStatement ps = conn.prepareStatement(comandoSQL, Statement.RETURN_GENERATED_KEYS)) {
-            
+
             ps.setString(1, cliente.getNombres());
             ps.setString(2, cliente.getApellidoPaterno());
             ps.setString(3, cliente.getApellidoMaterno());
             ps.setDate(4, cliente.getFechaNacimiento());
-            ps.setString(5, cliente.getCallle()); 
+            ps.setString(5, cliente.getCallle());
             ps.setString(6, cliente.getColonia());
             ps.setInt(7, cliente.getCodigoPostal());
-            ps.setString(8, cliente.getContraseña()); 
-            
+            ps.setString(8, cliente.getContraseña());
+
             ps.executeUpdate();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -55,10 +56,10 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public boolean clienteLogueado(int idCliente) throws PersistenciaException {
         String comandoSQL = "SELECT idCliente FROM Clientes WHERE idCliente = ?";
-        
-        try (Connection conexion = this.conexionBD.crearConexion(); 
+
+        try (Connection conexion = this.conexionBD.crearConexion();
              PreparedStatement ps = conexion.prepareStatement(comandoSQL)) {
-            
+
             ps.setInt(1, idCliente);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -75,7 +76,8 @@ public class ClienteDAO implements IClienteDAO {
             case 0 -> new PersistenciaException("Error: No se pudo conectar con el servidor.", ex);
             case 1045 -> new PersistenciaException("Error: Usuario o contraseña de BD incorrectos.", ex);
             case 1062 -> new PersistenciaException("Error: El cliente ya está registrado.", ex);
-            default -> new PersistenciaException("Error de base de datos (" + ex.getErrorCode() + "): " + ex.getMessage(), ex);
+            default ->
+                    new PersistenciaException("Error de base de datos (" + ex.getErrorCode() + "): " + ex.getMessage(), ex);
         };
     }
 }
