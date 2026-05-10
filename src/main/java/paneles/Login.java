@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import negocioDAO.ClienteDAO;
+import persistenciaBD.ConexionBD;
+import persistenciaBD.IConexionBD;
+import persistenciaDAO.IClienteDAO;
 
 public class Login extends JFrame {
     private Image imagen;
@@ -34,12 +38,10 @@ public class Login extends JFrame {
 
                 Graphics2D g2 = (Graphics2D) g;
 
-                // Habilitar alta calidad
                 g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Dibujar imagen con interpolación suave
                 g2.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
             }
         };
@@ -127,22 +129,34 @@ public class Login extends JFrame {
             }
         });
 
-        buttonIniciarSesion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(textFieldUsuario.getText().equals("luis") && Integer.parseInt(textFieldContra.getText()) == 123){
-                    JOptionPane.showMessageDialog(null, "Acceso consedido");
-                    Register r = new Register();
 
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Contra incorrecta");
-                }
+buttonIniciarSesion.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String usuario = textFieldUsuario.getText();
+        String password = textFieldContra.getText(); // O passwordFieldContra.getPassword() si lo cambiaste
 
+        // 1. Instanciar la conexión y el DAO
+        IConexionBD conexion = new ConexionBD();
+        IClienteDAO clienteDAO = new ClienteDAO(conexion);
+
+        try {
+            if (usuario.equals("Oscar") && password.equals("password_segura")) { 
+                
+                JOptionPane.showMessageDialog(null, "Acceso concedido. Bienvenido al Sistema de Pizzería.");
+                
+                PanelEntregas pantallaEntregas = new PanelEntregas(); 
+                pantallaEntregas.setVisible(true);
+                
+                dispose(); 
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
             }
-        });
-
-
-        setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + ex.getMessage());
+        }
     }
+});
+}
 }
